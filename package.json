@@ -1,0 +1,22 @@
+{
+  "name": "managementsystem",
+  "version": "1.0.0",
+  "description": "allow management to track employees",
+  "main": "employee.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsvalle123/ManagementSystem.git"
+  },
+  "keywords": [
+    "manage"
+  ],
+  "author": "jaimie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsvalle123/ManagementSystem/issues"
+  },
+  "homepage": "https://github.com/jsvalle123/ManagementSystem#readme"
+}
