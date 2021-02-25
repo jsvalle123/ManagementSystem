@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/jsvalle123/ManagementSystem/issues"
   },
-  "homepage": "https://github.com/jsvalle123/ManagementSystem#readme"
+  "homepage": "https://github.com/jsvalle123/ManagementSystem#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
 }

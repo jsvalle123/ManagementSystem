@@ -1,21 +1,11 @@
-DROP TABLE IF EXISTS employees;
+DROP DATABASE  IF EXISTS employee_db;
+CREATE DATABASE employee_db;
+USE employee_db;
+
+DROP TABLE IF EXISTS employee;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS departments;
 
-CREATE TABLE department (
-id INT NOT NULL,
-id INT AUTO_INCREMENT NOT NULL,
-name VARCHAR(30),
-PRIMARY KEY(id)
-);
-CREATE TABLE roles (
-PRIMARY KEY(id),    
-id INT AUTO_INCREMENT,
-title VARCHAR(30),
-salary DECIMAL,
-department_id INT,
-PRIMARY KEY(id)
-);
 CREATE TABLE employee (
 PRIMARY KEY(id),
 id INT AUTO_INCREMENT,
@@ -25,6 +15,23 @@ role_id INT,
 manager_id INT ,
 PRIMARY KEY(id)
 );
+
+CREATE TABLE department (
+id INT NOT NULL,
+id INT AUTO_INCREMENT NOT NULL,
+name VARCHAR(30),
+PRIMARY KEY(id)
+);
+
+CREATE TABLE roles (
+PRIMARY KEY(id),    
+id INT AUTO_INCREMENT,
+title VARCHAR(30),
+salary DECIMAL,
+department_id INT,
+PRIMARY KEY(id)
+);
+
 
 
 INSERT INTO employee (first_name, last_name) values ('John', 'Doe', 1);
@@ -47,6 +54,3 @@ INSERT INTO department (id, name) values (4, 'eng')
 
 SELECT * FROM employee;
 SELECT * FROM department;
-
-
-

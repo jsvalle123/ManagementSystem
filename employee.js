@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+require("dotenv").config();
 var connection = mysql.createConnection({
   host: "localhost",
 
@@ -10,7 +11,7 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "Yogi122998",
+  password: process.env.MYSQL_PASSWORD,
   database: "employee_db"
 });
 
@@ -51,23 +52,26 @@ function start() {
   }
 
   function viewEmployees() {
-    var query = "SELECT employee FROM employee GROUP BY first_name, last_name";
-    connection.query(query, function(err, res) {
+    var query = "SELECT first_name, last_name FROM employee";
+    connection.query(query, [answer.first_name, answer.last_name], function(err, res) {
       for (var i = 0; i < res.length; i++) {
-        console.log(res[i].first_name);
-        console.log(res[i].last_name)
+        console.log(
+        "Name:" +
+        res[i].first_name +
+        res[i].last_name 
+        )
       }
-      viewEmployees();
+      start();
     });
 
   }
   function viewDepartments() {
-    var query = "SELECT department FROM department GROUP BY name";
-    connection.query(query, function(err, res) {
-      for (var i = 0; i < res.length; i++) {
+    var query = "SELECT name FROM department";
+    connection.query(query,  function(err, res) {
+      if (err) throw err;
         console.log(res[i].name);
-      }
-      viewDepartments();
+      
+      start();
     });
 
   }
@@ -78,7 +82,7 @@ function start() {
         console.log(res[i].title);
         console.log(res[i].salary);
       }
-      viewRole();
+      start();
     });
 
   }
@@ -123,5 +127,6 @@ function start() {
         console.log("You've been added as an employee")
       }
     )
+    start();
   })
   }
