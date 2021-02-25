@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 
   // Your password
   password: process.env.MYSQL_PASSWORD,
-  database: "employee_db"
+  database: "employee_DB"
 });
 
 connection.connect(function(err) {
@@ -28,7 +28,7 @@ function start() {
       message: "What would you like to do?",
       choices: [
         "View all Employees",
-        "View Employees by depertment",
+        "View Employees by department",
         "View Employees by role",
         "Add Employee",
         "Remove Employee"
@@ -76,13 +76,15 @@ function start() {
 
   }
   function viewRole() {
-    var query = "SELECT role FROM role GROUP BY title, salary";
-    connection.query(query, function(err, res) {
+    var query = "SELECT title, salary FROM roles";
+    connection.query(query, [answer.title, answer.salary], function(err, res) {
       for (var i = 0; i < res.length; i++) {
-        console.log(res[i].title);
-        console.log(res[i].salary);
-      }
-      start();
+        console.log("Title: " +
+        res[i].title +
+        "|| Salary: " +
+        res[i].salary
+        )}
+        start();
     });
 
   }
@@ -129,4 +131,12 @@ function start() {
     )
     start();
   })
+  }
+
+  function deleteEmployee() {
+     connection.query("DELETE FROM employee WHERE ?", function(err, res) {
+      if(err) throw err;
+      console.log(res.affectedRows + " employee deleted!\n");
+      start();
+     });
   }
